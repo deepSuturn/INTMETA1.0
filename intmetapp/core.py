@@ -7,7 +7,7 @@ def kraken(fileinput, taxonomiclevel):
     # Leitura inicial de dados
     df_data = pd.read_csv(fileinput, header=None, low_memory=False, sep='\t')
 
-    # Adiciona cabecalho para cada coluna para o output KRAKEN.
+    # Adiciona cabecalho para cada coluna para o output KRAKEN 1 E KRAKEN 2.
 
     # Info0 se refere a PORCENTAGEM
     # Info1 se refere ao numero de Reads correspondentes a taxonomia
