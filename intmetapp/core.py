@@ -40,6 +40,7 @@ def kraken(fileinput, taxonomiclevel):
     
     # Retira maior porcentagem para ser parametro de tamanho do gráfico
     maxpercent = output_df_out['Info2'].iloc[0]
+    
     return dfd3, maxpercent
 
 def clark(fileinput, taxonomiclevel):
