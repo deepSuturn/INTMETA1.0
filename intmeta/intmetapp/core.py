@@ -1,7 +1,5 @@
 import pandas as pd
-import re
-import sys
-import os
+
 
 def kraken(fileinput, taxonomiclevel):
     # Leitura inicial de dados
