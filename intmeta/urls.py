@@ -21,6 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('results', views.results, name='results'),
+    path('kraken', views.kraken, name='kraken'),
+    path('clark', views.clark, name='clark'),
+    path('metamaps', views.metamaps, name='metamaps'),
+    path('faq', views.faq, name='faq'),
     path('krona', views.krona, name='krona')
 
 ]

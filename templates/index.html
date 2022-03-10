@@ -9,36 +9,12 @@
 <div class="container card" style="margin-top: 50px; padding: 30px">
     <div class="row justify-content-center container">
         <div class="content">
-              <h1> Envie sua tabela </h1> <br>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="row content">
-                        <div class="col"> <br>
-                            <input type="file" name="document" id="document" required="required">
-                        </div>
+        <a href="/kraken"><button>Kraken 1 - 2</button></a>
+        <a href="/clark"><button>Clark</button></a>
+        <a href="/metamaps"><button>Metamaps</button></a>
 
-                         <div class="col">
-                             <p id="id"> Parametro</p>
-                            <input type="text" name="attributeid" id="attributeid" required="required">
-                        </div>
 
-                         <div class="col"> <br>
-                            <button id="submit" class="btn-primary"> Upload</button>
-                        </div>
-                    </div>
-                </form>
-        <br>
-
-    {% block messages %}
-        {% if messages %}
-            <div class="container" style="color: firebrick; margin-top: 20px" >
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-            </div>
-        {% endif %}
-    {% endblock %}
-              </div>
+        </div>
 </div>
 </div>
 </body>

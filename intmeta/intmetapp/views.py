@@ -1,6 +1,6 @@
+from html.entities import name2codepoint
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
-import os
 import os
 import json
 from intmeta.intmetapp import core
@@ -9,43 +9,52 @@ from intmeta.intmetapp import subcalls
 # Create your views here.
 
 def index(request):
+    return render(request, 'index.html')
 
-    context = {}
+def kraken(request):
     global attribute, dfd3, maxpercent
-
-
     if request.method == 'POST':
-
         uploaded_file = request.FILES['document']
         attribute = request.POST.get('attributeid')
-
-        print(attribute)
-
         savefile = FileSystemStorage()
         name = savefile.save(uploaded_file.name, uploaded_file) # pega o nome do arquivo
-
         d = os.getcwd() # how we get the current directory
         file_directory = d+'/media/'+name #saving the file in the media directory
-        with open(file_directory) as f:
-            # Aqui ele identifica qual é o tipo de arquivo, se é Kraken, Clark, Metamaps, etc...
-            identify = f.readline()
-            if 'unclassified' in identify:
-                print("kraken file")
-                dfd3, maxpercent = core.kraken(file_directory, attribute)                
-                subcalls.krakenkrona(file_directory)
-                return redirect(results)
-            elif 'Proportion_Classified(%)' in identify:
-                print("clarkfile")
-                dfd3, maxpercent = core.clark(file_directory, attribute)
-                subcalls.clarkkrona(file_directory)
-                return redirect(results)
-            elif 'abundance' in identify:
-                print("metamaps file")
-                dfd3, maxpercent = core.metamaps(file_directory, attribute)
-                return redirect(results)  
-        request.session['attribute'] = attribute
+        print("kraken file")
+        dfd3, maxpercent = core.kraken(file_directory, attribute)                
+        subcalls.krakenkrona(file_directory)
+        return redirect(results)
+    return render(request, 'kraken.html')
 
-    return render(request, 'index.html', context)
+
+def clark(request):
+    global dfd3, maxpercent
+    if request.method == 'POST':
+        uploaded_file = request.FILES['document']
+        savefile = FileSystemStorage()
+        name = savefile.save(uploaded_file.name, uploaded_file) # pega o nome do arquivo
+        uploaded_file2 = request.FILES['document2']
+        savefile2 = FileSystemStorage()
+        name2 = savefile2.save(uploaded_file2.name, uploaded_file2) # pega o nome do arquivo
+        d = os.getcwd() # how we get the current directory
+        file_directory = d+'/media/'+name #saving the file in the media directory
+        file_directory2 = d+'/media/'+name2 #saving the file in the media directory
+        dfd3, maxpercent = core.clark(file_directory)                
+        subcalls.clarkkrona(file_directory2)
+        return redirect(results)
+    return render(request, 'clark.html')
+
+
+def metamaps(request):
+    return render(request, 'metamaps.html')
+
+
+def faq(request):
+    return render(request, 'faq.html')
+
+
+def krona(request):
+    return render(request, 'krona.html')    
 
 
 def results(request):
@@ -53,7 +62,3 @@ def results(request):
     # Agora nós convertemos o dicionário para JSON
     dfd3_json = json.dumps(dfd3, indent = 4, default=str, ensure_ascii=False)
     return render(request, 'results.html', {'dfd3_json':dfd3_json, 'maxpercent':maxpercent})
-
-
-def krona(request):
-    return render(request, 'krona.html')

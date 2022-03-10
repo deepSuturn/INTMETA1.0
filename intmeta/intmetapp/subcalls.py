@@ -27,19 +27,9 @@ def krakenkrona(fileinput):
     return 0
 
 def clarkkrona(fileinput):
-    # Camada de segurança pra garantir que a informação errada não seja passada para o html que a pessoa vai visualizar
-    # É feita a contagem de arquivos temporarios no diretorio e é atribuido um numero a cada uma
-    # Assim o arquivo sempre vai carregar o temporario correto.
-    DIR = './tmpfiles'
-    filecount = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
-    # Argumentos e a chamada do programa
-    nomesaida = f'tmpfiles/Kronatmp{filecount}.krn'
-    # Dessa vez preciso de comandos da shell ( > ) para passar a output para um arquivo em texto.
-    subprocess.run(f"./intmeta/intmetapp/krona/clark/estimate_abundance.sh -F {fileinput} -D ./intmeta/intmetapp/krona/clark/Bacteria --krona > tmpfiles/Kronatmp{filecount}.krn ", shell=True)
-
     # Conversão arquivo krona para html
     programa = './intmeta/intmetapp/krona/scripts/ImportTaxonomy.pl'
-    arg1_2 = str(nomesaida)
+    arg1_2 = str(fileinput)
     arg2_2 = '-o'
     nomehtml = 'templates/krona.html'
     subprocess.call([programa, arg1_2, arg2_2, nomehtml], shell=False)

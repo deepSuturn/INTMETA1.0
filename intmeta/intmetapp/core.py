@@ -41,10 +41,7 @@ def kraken(fileinput, taxonomiclevel):
     
     return dfd3, maxpercent
 
-def clark(fileinput, taxonomiclevel):
-    # Clark não possui parametro de escolha de nivel taxonomico em sua output, logo valor é descartado.
-    dummydata = taxonomiclevel
-
+def clark(fileinput):
     # Leitura inicial de dados
     df_data = pd.read_csv(fileinput, low_memory=False, sep=',')
 
