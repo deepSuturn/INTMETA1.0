@@ -21,7 +21,13 @@ def kraken(request):
         d = os.getcwd() # how we get the current directory
         file_directory = d+'/media/'+name #saving the file in the media directory
         print("kraken file")
-        dfd3, dfd3_2, maxpercent, maxreads, total_reads = core.kraken(file_directory, attribute)                
+        # Tratamento de erro, modifica o comportamento a cada erro identificado
+        try:
+            dfd3, dfd3_2, maxpercent, maxreads, total_reads = core.kraken(file_directory, attribute)    
+        except IndexError:
+            return redirect(index)
+        except ValueError:
+            return redirect(index)
         subcalls.krakenkrona(file_directory)
         return redirect(results)
     return render(request, 'kraken.html')
@@ -39,7 +45,13 @@ def clark(request):
         d = os.getcwd() # how we get the current directory
         file_directory = d+'/media/'+name #saving the file in the media directory
         file_directory2 = d+'/media/'+name2 #saving the file in the media directory
-        dfd3, dfd3_2, maxpercent, maxreads, total_reads = core.clark(file_directory)              
+        # Tratamento de erro, modifica o comportamento a cada erro identificado
+        try:
+            dfd3, dfd3_2, maxpercent, maxreads, total_reads = core.clark(file_directory) 
+        except IndexError:
+            return redirect(index)
+        except ValueError:
+            return redirect(index)             
         subcalls.clarkkrona(file_directory2)
         return redirect(results)
     return render(request, 'clark.html')

@@ -20,6 +20,8 @@ def kraken(fileinput, taxonomiclevel):
     # Info5 se refere ao nome cientifico.
 
     df_data.columns = ['Info0', 'Info1', 'Info2', 'Info3', 'Info4', 'Info5']
+    df_data_reads = df_data[['Info5', 'Info1']].copy()
+    df_data_reads = df_data_reads.rename(columns={'Info1': 'Info2', 'Info5': 'Info1'}, inplace=False)
 
     # Separa somente os correspondentes a filo, reino, etc...
     df_data2 = df_data.loc[df_data['Info3'] == taxonomiclevel.upper()]
@@ -66,7 +68,7 @@ def kraken(fileinput, taxonomiclevel):
     total = output_df_2_somar['Info1'].sum()
 
     # Pega o numero de reads total 
-    total_reads = output_df_2['Info1'].sum()
+    total_reads = df_data_reads['Info2'].sum()
 
     # Cria uma linha nova para adicionar os outros
     others_col = {'Info5':'Others', 'Info1':total}
