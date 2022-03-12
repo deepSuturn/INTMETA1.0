@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'index.html')
 
 def kraken(request):
-    global attribute, dfd3, maxpercent, dfd3_2, maxreads
+    global attribute, dfd3, maxpercent, dfd3_2, maxreads, total_reads
     if request.method == 'POST':
         uploaded_file = request.FILES['document']
         attribute = request.POST.get('attributeid')
@@ -21,14 +21,14 @@ def kraken(request):
         d = os.getcwd() # how we get the current directory
         file_directory = d+'/media/'+name #saving the file in the media directory
         print("kraken file")
-        dfd3, dfd3_2, maxpercent, maxreads = core.kraken(file_directory, attribute)                
+        dfd3, dfd3_2, maxpercent, maxreads, total_reads = core.kraken(file_directory, attribute)                
         subcalls.krakenkrona(file_directory)
         return redirect(results)
     return render(request, 'kraken.html')
 
 
 def clark(request):
-    global attribute, dfd3, maxpercent, dfd3_2, maxreads
+    global attribute, dfd3, maxpercent, dfd3_2, maxreads, total_reads
     if request.method == 'POST':
         uploaded_file = request.FILES['document']
         savefile = FileSystemStorage()
@@ -39,7 +39,7 @@ def clark(request):
         d = os.getcwd() # how we get the current directory
         file_directory = d+'/media/'+name #saving the file in the media directory
         file_directory2 = d+'/media/'+name2 #saving the file in the media directory
-        dfd3, dfd3_2, maxpercent, maxreads = core.clark(file_directory)                
+        dfd3, dfd3_2, maxpercent, maxreads, total_reads = core.clark(file_directory)              
         subcalls.clarkkrona(file_directory2)
         return redirect(results)
     return render(request, 'clark.html')
@@ -49,8 +49,8 @@ def metamaps(request):
     return render(request, 'metamaps.html')
 
 
-def faq(request):
-    return render(request, 'faq.html')
+def about(request):
+    return render(request, 'about.html')
 
 
 def krona(request):
@@ -61,4 +61,4 @@ def results(request):
     # O arquivo volta do parse já convertido para dicionário
     # Agora nós convertemos o dicionário para JSON
     dfd3_json = json.dumps(dfd3, indent = 4, default=str, ensure_ascii=False)
-    return render(request, 'results.html', {'dfd3_json':dfd3_json, 'dfd3_2':dfd3_2, 'maxreads':maxreads, 'maxpercent':maxpercent})
+    return render(request, 'results.html', {'dfd3_json':dfd3_json, 'dfd3_2':dfd3_2, 'maxreads':maxreads,'total_reads':total_reads, 'maxpercent':maxpercent})

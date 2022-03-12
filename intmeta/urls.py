@@ -24,7 +24,7 @@ urlpatterns = [
     path('kraken', views.kraken, name='kraken'),
     path('clark', views.clark, name='clark'),
     path('metamaps', views.metamaps, name='metamaps'),
-    path('faq', views.faq, name='faq'),
+    path('about', views.about, name='about'),
     path('krona', views.krona, name='krona')
 
 ]

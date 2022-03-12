@@ -65,6 +65,9 @@ def kraken(fileinput, taxonomiclevel):
     # Pega todas as reads das linhas que estão abaixo
     total = output_df_2_somar['Info1'].sum()
 
+    # Pega o numero de reads total 
+    total_reads = output_df_2['Info1'].sum()
+
     # Cria uma linha nova para adicionar os outros
     others_col = {'Info5':'Others', 'Info1':total}
 
@@ -104,7 +107,7 @@ def kraken(fileinput, taxonomiclevel):
     # Pega o nome do arquivo para mandar pro d3js
     dfd3_2 = f'/static/csv/SaidaOutput{filecount}.csv'
 
-    return dfd3, dfd3_2, maxpercent, maxreads
+    return dfd3, dfd3_2, maxpercent, maxreads, total_reads
 
 def clark(fileinput):
     # Leitura inicial de dados
@@ -164,6 +167,9 @@ def clark(fileinput):
     # Pega todas as reads das linhas que estão abaixo
     total = output_df_2_somar['Info3'].sum()
 
+    # Soma o total de reads no arquivo
+    total_reads = output_df_2['Info3'].sum()
+
     # Cria uma linha nova para adicionar os outros
     others_col = {'Info0':'Others', 'Info3':total}
 
@@ -203,7 +209,7 @@ def clark(fileinput):
     # Pega o nome do arquivo para mandar pro d3js
     dfd3_2 = f'/static/csv/SaidaOutput{filecount}.csv'
     
-    return dfd3, dfd3_2, maxpercent, maxreads
+    return dfd3, dfd3_2, maxpercent, maxreads, total_reads
 
 
 # DESCONSIDERAR METAMAPS, É NECESSÁRIO ATUALIZAR.
