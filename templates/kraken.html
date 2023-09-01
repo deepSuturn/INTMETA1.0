@@ -62,13 +62,13 @@ Coded by www.creative-tim.com
           <li class="active ">
             <a href="./kraken">
               <i class="nc-icon nc-tile-56"></i>
-              <p>Kraken 1-2</p>
+              <p>Kraken Style Report</p>
             </a>
           </li>
           <li>
             <a href="./clark">
               <i class="nc-icon nc-tile-56"></i>
-              <p>CLARK</p>
+              <p>CLARK Style Report</p>
             </a>
           </li>
           
@@ -109,37 +109,43 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <center>                
+                <center>
                 <h1> Send your output file </h1> <br>
                 <div class="info">
-                  <p><strong>What file do i need?</strong> Select the output from Kraken's "kraken-report".</p>
+                  <p><strong>What file do i need?</strong> Select the output from a Kraken-Style report, check this link for detailed help</p>
                 </div>
                 <div class="info">
-                  <p><strong>Taxonomic ranks for input</strong> Write: "D" for Domain, "K" for Kingdom, "P" for Phylum, "C" for Class, "O" for Order, "F" for Family, "G" for Genus and "S" for Species.</p>
+                  <p><strong>What software is currently supported?.</strong> Every report that uses Kraken-Report style from any software is currently supported.</p>
                 </div>
             </center>
               </div>
               <div class="card-body ">
                 <center>
-                  
                 <form method="POST" enctype="multipart/form-data">
-            
                     {% csrf_token %}
                     <div class="row content">
                         <div class="col"> <br>
                             <input type="file" name="document" id="document" required="required">
                         </div>
-
                          <div class="col">
                              <p id="id"> Taxonomic Rank</p>
-                            <input type="text" name="attributeid" id="attributeid" required="required">
-                        </div>
+                                <select name="attributeid" required="required">
+                                    <option value="D">Domain</option>
+                                    <option value="K">Kingdom</option>
+                                    <option value="P">Phylum</option>
+                                    <option value="C">Class</option>
+                                    <option value="O">Order</option>
+                                    <option value="F">Family</option>
+                                    <option value="G">Genus</option>
+                                    <option value="S">Species</option>
+                                </select>
+                         </div>
                          <div class="col"> <br>
                             <button class="button2" id="submit" class="btn-primary"> <span>Upload</span></button>
                         </div>
                     </div>
                 </form>
-        <br>
+       <br>
 
     {% block messages %}
         {% if messages %}

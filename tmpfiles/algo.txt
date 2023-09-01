@@ -1,0 +1,13 @@
+Collecting export2graphlan
+  Using cached export2graphlan-0.22.tar.gz (14 kB)
+Collecting pandas==0.13.1
+  Using cached pandas-0.13.1.zip (6.9 MB)
+Requirement already satisfied: python-dateutil>=2 in ./test/lib/python3.9/site-packages (from pandas==0.13.1->export2graphlan) (2.8.2)
+Requirement already satisfied: pytz>=2011k in ./test/lib/python3.9/site-packages (from pandas==0.13.1->export2graphlan) (2022.7)
+Requirement already satisfied: numpy>=1.7.0b2 in ./test/lib/python3.9/site-packages (from pandas==0.13.1->export2graphlan) (1.24.0rc2)
+Requirement already satisfied: six>=1.5 in ./test/lib/python3.9/site-packages (from python-dateutil>=2->pandas==0.13.1->export2graphlan) (1.16.0)
+Using legacy 'setup.py install' for export2graphlan, since package 'wheel' is not installed.
+Using legacy 'setup.py install' for pandas, since package 'wheel' is not installed.
+Installing collected packages: pandas, export2graphlan
+    Running setup.py install for pandas: started
+    Running setup.py install for pandas: finished with status 'error'

@@ -25,6 +25,7 @@ urlpatterns = [
     path('clark', views.clark, name='clark'),
     path('metamaps', views.metamaps, name='metamaps'),
     path('about', views.about, name='about'),
+    path('dc', views.dc, name='dc'),
     path('krona', views.krona, name='krona')
 
 ]
